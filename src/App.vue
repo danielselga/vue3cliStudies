@@ -4,7 +4,8 @@
   <p>wellcome...</p>
   <input type="text" ref="name">
   <button @click="handleClick">Click me</button>
-  <div v-if="showModal">
+  <!-- a tag teleport joga a div para o index.html para declarar usamos o atributo 'to' e o valor .modals assim ele será renderizado no index.html  -->
+  <teleport to=".modals" v-if="showModal">
   <!-- theme="sale" estamos passando uma classe dinamicamente via props para nossa tag especifica. -->
     <Modal :header="header" :text="text" theme="sale" @close="toggleModal"> 
     <!-- o @close é um evento passado pelo componente filho via $emit que é disparada onde é declarado via função na tag.-->
@@ -15,7 +16,7 @@
           <a href="#">more info</a>  
         </template>
     </Modal>
-  </div>
+  </teleport>
   <button @click.alt="toggleModal">Show Modal (alt)</button>
   <!-- esse click.alt ele faz um prevent default e acrescenta a regra de que só será disparado o evento quando a tecla alt estiver pressionada. -->
 </div>
@@ -53,7 +54,7 @@ export default {
 </script>
 
 <style>
-#app {
+#app .modals {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
